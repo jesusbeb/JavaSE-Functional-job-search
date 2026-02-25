@@ -1,6 +1,7 @@
 package com.platzi.functional._04_functional;
 
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class MathFunctions {
 
@@ -19,12 +20,38 @@ public class MathFunctions {
         System.out.println(squareFuction.apply(5));
         System.out.println(squareFuction.apply(25));
 
-        System.out.println(square(5));
+
+        // Function que recibe un entero y devuelve un booleano
+        // Si el numero que recibe es par, devuelve 1
+        Function<Integer, Boolean> isOdd = x -> x%2 == 1;
+
+        // Funcion que trabaja sobre un tipo de dato y genera un boolean
+        Predicate<Integer> isEven = x -> x%2 == 0;
+        // Las funciones Predicate se invocan con .test()
+        isEven.test(4); //true
+
+        // Funcion Predicate que recibe Student y nos dice si aprobo (cuando calificacion es mayor o igual a 6)
+        Predicate<Student> isApproved = student -> student.getCalificacion() >= 6.0;
+
+        // Creamos un estudiante e imprimimos si aprobo o no
+        Student juan = new Student(5.9);
+        System.out.println(isApproved.test(juan));
     }
 
-    // squareFunction es relativamente lo mismo que este metodo
-    static int square(int x) {
-        return x*x;
+
+    // Clase Student
+    static class  Student {
+        private double calificacion;
+
+        // Constructor
+        public Student(double calificacion){
+            this.calificacion = calificacion;
+        }
+
+        // Getter
+        public double getCalificacion() {
+            return calificacion;
+        }
     }
 
 }
