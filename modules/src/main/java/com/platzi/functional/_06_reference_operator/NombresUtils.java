@@ -23,7 +23,7 @@ public class NombresUtils {
     }
 
     // Metodo que devuelve una lista de tipo T que recibe una candidad indefinida de elementos T
-    static <T> List<T> getList(T... elements) {
+    public static <T> List<T> getList(T... elements) {
         return Arrays.asList(elements);
     }
 }
