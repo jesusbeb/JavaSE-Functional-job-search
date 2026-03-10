@@ -45,6 +45,24 @@ public class Streams {
         // Creamos un nuevo Stream con los elementos que tienen la palabra Java
         Stream<String> justJavaCourses = emphasisCourses.filter(course -> course.contains("Java"));
         justJavaCourses.forEach(System.out::println); // Imprimimos el Stream
+
+
+        // Los Stream tienen dos tipos de operaciones, intermedias y terminales. Las intermedias generan un nuevo Stream
+        // Las finales genera un dato final despues de haber operado todo o pueden no devolver ningun dato.
+
+        // Creamos un Stream a partir de una Coleccion ya existente "courseList"
+        Stream<String> coursesStream2 = courseList.stream();
+
+        addOperator(
+                coursesStream2.map(course -> course + "!!" ) // Agregamos !! a cada elemento
+                .filter(course -> course.contains("Java")) // Filtramos los que tienen la palabra Java
+        ).forEach(System.out::println);
+    }
+
+    // Funcion que devuelve un Stream de algun tipo e internamente agrega operadores a un Stream que recibe como parametro
+    // Retornamos el stream que se recibe, se le aplica peek que hace una iteracion sobre los datos para verlos
+    static <T> Stream<T> addOperator(Stream<T> stream){
+        return stream.peek(data -> System.out.println("Dato: " + data));
     }
 }
 
