@@ -89,4 +89,49 @@ enfoque más limpio en comparación con los bucles tradicionales.
 Un aspecto crítico a tener en cuenta al trabajar con Stream es que solo pueden consumirse una vez. Después de
 operar sobre él, el Stream se considera "consumido" y no puede reutilizarse ni realizar más operaciones. Intentar
 hacerlo resulta en excepciones, lo cual es importante para evitar errores durante la ejecución.
+
+
+
+¿Qué son las operaciones intermedias?
+
+Se le dice operación intermedia a toda operación dentro de un Stream que como resultado devuelva un nuevo Stream. Es decir,
+tras invocar una operación intermedia con un cierto tipo de dato, obtendremos como resultado un nuevo Stream conteniendo los
+datos ya modificados.
+
+El Stream que recibe la operación intermedia pasa a ser "consumido" posterior a la invocación de la operación, quedando
+inutilizable para posteriores operaciones. Si decidimos usar el Stream para algún otro tipo de operaciones tendremos un
+IllegalStateException.
+
+La interfaz Stream cuenta con un grupo de operaciones intermedias. Las operaciones que ya están definidas son:
+
+filter(…)
+map(…)
+flatMap(…)
+distinct(…)
+limit(…)
+peek(…)
+skip(…)
+sorted(…)
+
+
+Las operaciones terminales son aquellas operaciones que como resultado no generan un nuevo Stream. Su resultado puede
+variar según la operación. La utilidad de estas es poder generar un valor final a todas nuestras operaciones o consumir
+los datos finales. La razón principal para querer esto es que los datos deberán salir en algún punto de nuestro control y
+es con las operaciones terminales que hacemos esto.
+
+Las operaciones terminales más comunes que se encuentran en Stream son:
+
+anyMatch()
+allMatch()
+noneMatch()
+findAny()
+findFirst()
+min()
+max()
+reduce()
+count()
+toArray()
+collect()
+forEach()
+
  */
